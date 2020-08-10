@@ -1,39 +1,12 @@
-
-# Welcome to Project & Portfolio!
-
-This repository will be used to keep track of research and development conducted in this class. Follow the instructions below to get started.
-
-## Step 1
-
-Review the [About](./docs/01_about/README.md) readme and all of the links it provides. 
-
-
-## Step 2
-
-Begin required research for the first milestone (see FSO). 
-
-
-## Step 3
-
-Attend the first Live Session. If you are unable to attend the upcoming Live Session, view the archive or summary video which is typically posted to the Live Sessions assignment the following day. You can then begin to work on your version control and milestone assignments.  
-
-
-<br>
-
-
-### Next Steps... 
-After completing the above steps, update this read me with your own text. Delete all of the above text including this paragraph. You will then need to customize this read me to describe what this repository contains. Use the text below as a starting point and customize the text with your own words. As you make updates to your code, continue to update this readme file. Use the readme to explain your ongoing updates to this repository. To receive credit for your updates, be sure to finish this work before you submit the first milestone assignment.  
-
-
 # Project
-### First Last / Student ID: 000####### 
- Hello my name is ______ . I am a ______ student from ____. Here's some additional information about me...
+### Ashley Thibodeau / Student ID: 0004912241 
+ Hello, my name is Ashley. I am an amiable student from Shrewsbury, MA. As for some additional information about me, currently I attend FullSail while also working a fulltime job in the medical field. If you have any questions, please feel free to contact me with the information below.
 
 
-![Degree Program](https://img.shields.io/badge/degree-web%20design%20%26%20development-blue.svg)&nbsp; ![Degree Program](https://img.shields.io/badge/degree-mobile%20design%20%26%20development-blue.svg)
+![Degree Program](https://img.shields.io/badge/degree-web%20design%20%26%20development-blue.svg)
 
 
-eMaill@student.fullsail.edu -- (###) ###-#### 
+Athibodeau1@student.fullsail.edu -- (774) 214-6490 
 
 
 ---
@@ -43,7 +16,7 @@ The purpose of this repository is to practice development using version control.
 
 Here's what I worked on this past week...
 
-**Week 1**: Brief summary of work. 2-3 sentences.  
+**Week 1**: This week I have worked on a variety of tasks from making a C# project, Creating a GitHub student account, Learning Terminal Commands to better use GitHub, and using Markdown syntax. Though I found using Terminal challenging I’m excited to get more familiar with it and see what follows in the weeks to come. 
 
 **Week 2**:    
 
@@ -58,7 +31,7 @@ Here's what I worked on this past week...
 ### Progress
 
 - [X] Repo Created: Complete! 
-- [ ] Milestone 1: status (e.g. Complete, In Progress, etc.)
+- [X] Milestone 1: status (e.g. Complete, In Progress, etc.)
 - [ ] Milestone 2: status 
 - [ ] Milestone 3: status
 - [ ] Milestone 4: status
