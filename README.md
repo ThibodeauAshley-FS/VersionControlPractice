@@ -31,7 +31,7 @@ Here's what I worked on this past week...
 ### Progress
 
 - [X] Repo Created: Complete! 
-- [X] Milestone 1: status (e.g. Complete, In Progress, etc.)
+- [X] Milestone 1: Complete
 - [ ] Milestone 2: status 
 - [ ] Milestone 3: status
 - [ ] Milestone 4: status
