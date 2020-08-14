@@ -2,27 +2,28 @@
     Name:       Ashley Thibodeau
     Date:       8.5.2020
     Class:      C202008 01
-    Assignment: 1.3 Project Initiation
+    Assignment: 2.6 Data Integration 1
  
  */
 using System;
-namespace ProjectInitiation
+namespace ADF_2007_ThibodeauAshley
 {
     public class App
     {
         //Fields
-        private User _mainUser;
+        private User _activeUser;
+        private bool _loggedIn;
 
         //Constructor
         public App()
         {
             Menu menu = new Menu();
             menu.Init
-            (new string[] { "Main Menu", "Login", "About", "Exit" });
+            (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" });
             menu.Display();
 
-            User user = new User();
-            _mainUser = user;
+            //User user = new User();
+            //_activeUser = user;
 
             Selection();
         }
@@ -39,9 +40,12 @@ namespace ProjectInitiation
                     Exit();
                     break;
                 case 1:
-                    Login();
+                    CreateUser();
                     break;
                 case 2:
+                    Login();
+                    break;
+                case 3:
                     About();
                     break;
                 default:
@@ -52,6 +56,12 @@ namespace ProjectInitiation
             }
         }
 
+        //The CreateUser method will clear the console, and then ask the user to type in a name and password.
+        private void CreateUser()
+        {
+
+        }
+
         //Clears the console and then runs a static method of the User class
         private void Login()
         {
@@ -60,7 +70,7 @@ namespace ProjectInitiation
             while (loggedIn)
             {
                 Console.Clear();
-                loggedIn = User.Login(_mainUser);
+                loggedIn = User.Login(_activeUser);
                 
             }
 

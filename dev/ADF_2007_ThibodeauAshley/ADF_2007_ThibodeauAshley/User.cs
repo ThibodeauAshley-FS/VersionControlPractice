@@ -2,12 +2,12 @@
     Name:       Ashley Thibodeau
     Date:       8.5.2020
     Class:      C202008 01
-    Assignment: 1.3 Project Initiation
+    Assignment: 2.6 Data Integration 1
  
  */
 using System;
 
-namespace ProjectInitiation
+namespace ADF_2007_ThibodeauAshley
 {
     public class User
     {
