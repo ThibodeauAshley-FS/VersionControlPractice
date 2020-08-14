@@ -12,7 +12,7 @@ namespace ADF_2007_ThibodeauAshley
     {
 
         //Validates a string entry
-        public static string String(string inputMessage)
+        public static string UserStringEntry(string inputMessage)
         {
             Console.Write(inputMessage);
             string userResponse = Console.ReadLine();
@@ -30,7 +30,7 @@ namespace ADF_2007_ThibodeauAshley
         }
 
         //Validates a Number entry
-        public static int Number(string inputMessage)
+        public static int UserNumberEntry(string inputMessage)
         {
             Console.Write(inputMessage);
             string userResponse = Console.ReadLine();
