@@ -12,101 +12,153 @@ namespace ADF_2007_ThibodeauAshley
     {
         //Fields
         private User _activeUser;
-        private bool _loggedIn;
+        private bool _loggedIn = false;
+        
 
         //Constructor
         public App()
         {
-            Menu menu = new Menu();
-            menu.Init
-            (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" });
-            menu.Display();
+                Menu menu = new Menu();
+                menu.Init
+                (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" }); 
+                menu.Display();
 
-            //User user = new User();
-            //_activeUser = user;
-
-            Selection();
+                Selection(menu);
         }
 
 
         //Asks the user to make a selection, user selection is then used in a switch statement
-        private void Selection()
+        private void Selection(Menu menu)
         {
-            int choice = Validation.Number("Select a Menu Option: _");
+            int choice = Validation.UserNumberEntry("Select a Menu Option: _");
 
-            switch (choice)
+            if(_loggedIn == false)
             {
-                case 0:
-                    Exit();
-                    break;
-                case 1:
-                    CreateUser();
-                    break;
-                case 2:
-                    Login();
-                    break;
-                case 3:
-                    About();
-                    break;
-                default:
-                    Console.WriteLine("\r\nOption not available");
-                    Continue();
-                    break;
+                switch (choice)
+                {
+                    case 0:
+                        Exit();
+                        break;
+                    case 1:
+                        CreateUser(menu);
+                        break;
+                    case 2:
+                        SignIn(menu);
+                        break;
+                    case 3:
+                        About(menu);
+                        break;
+                    default:
+                        Console.WriteLine("\r\nOption not available");
+                        Continue(menu);
+                        break;
                    
+                }
             }
-        }
-
-        //The CreateUser method will clear the console, and then ask the user to type in a name and password.
-        private void CreateUser()
-        {
-
-        }
-
-        //Clears the console and then runs a static method of the User class
-        private void Login()
-        {
-            bool loggedIn = true;
-
-            while (loggedIn)
+            else
             {
-                Console.Clear();
-                loggedIn = User.Login(_activeUser);
-                
+                switch (choice)
+                {
+                    case 0:
+                        Exit();
+                        break;
+                    case 1:
+                        About(menu);
+                        break;
+                    case 2:
+                        _loggedIn = false;
+                        break;
+                    default:
+                        Console.WriteLine("\r\nOption not available");
+                        Continue(menu);
+                        break;
+                   
+                }
             }
-
-            Continue();
 
             
 
         }
 
+        //The CreateUser method will clear the console, and then ask the user to type in a name and password.
+        private User CreateUser(Menu menu)
+        {
+            UI.Header("Create User");
+
+            string newUsername = Validation.UserStringEntry(" Name: _");
+            
+            string newPassword = Validation.UserStringEntry(" Password: _");
+
+            _activeUser = new User(newUsername,12345,newPassword);
+
+            UI.Separator();
+            UI.AccentString("\r\n New UserID: ",$"{_activeUser.ID}");
+
+            Continue(menu);
+
+            return _activeUser;
+        }
+
+        private void SignIn(Menu menu)
+        {
+
+            if(_activeUser != null)
+            {
+                    //check to see if User.Login(activeUser) returns back a boolean value of true
+                       bool vaildUser = User.Login(_activeUser);
+                    
+                    //If true, the Menu.Init method is run
+                    if(vaildUser == true)
+                    {
+                        _loggedIn = vaildUser;
+
+                        Menu loggedInMenu = new Menu();
+                        loggedInMenu.Init
+                        ( new string [] {$"Welcome {_activeUser.Name}!", "About", "Logout", "Exit"});
+                        loggedInMenu.Display();
+
+                        Selection(loggedInMenu);
+                        
+                    }
+
+            }
+            else
+            {
+                UI.Error("There are currently no active users. Please create a user account");
+                Selection(menu);
+            }
+
+
+            Continue(menu);
+            
+
+        }
+
+
         //Clears the console and prints out a short message to the console
-        private static void About()
+        private void About(Menu menu)
         {
             Console.Clear();
-            Console.WriteLine("========================================");
-            Console.WriteLine($" About");
-            Console.WriteLine("========================================\r\n");
+            UI.Header($" About");
 
-            Console.WriteLine("This is the about section");
+            Console.WriteLine("\r\nThis is the about section\r\n");
 
-            Continue();
+            Continue(menu);
         }
 
         //Clears the console and prints out a short message to the console
         private static void Exit()
         {
-            Console.Clear();
-            Console.WriteLine("Exiting");
+            UI.Header("Exiting....");
         }
 
         //Prints message to console, waits for users response to clear
-        private static void Continue()
+        private void Continue(Menu menu)
         {
-            Console.Write("\r\nPress any key to continue... ");
-            Console.ReadKey();
-            Console.Clear();
-            _ = new App();
+            UI.KeyPause();
+
+            menu.Display();
+            Selection(menu);
         }
         
     }
