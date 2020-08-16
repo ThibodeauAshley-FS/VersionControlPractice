@@ -31,21 +31,18 @@ namespace ADF_2007_ThibodeauAshley
         //Prints out to console the menu title and list of menu items
         public void Display()
         {
-            Console.WriteLine("========================================");
-            Console.WriteLine(" "+ _title);
-            Console.WriteLine("========================================\r\n");
-            
+            UI.Header(" "+ _title);
+
             for (int i = 1; i < _menuItems.Count-1; i++)
             {
-                Console.WriteLine($" [{i}] {_menuItems[i]}");
+                UI.AccentNumber(" [",i,$"] {_menuItems[i]}");
 
             }
 
             int index = _menuItems.IndexOf("Exit");
-            Console.WriteLine($"\r\n [0] {_menuItems[index]}");
+            UI.AccentNumber("\r\n [",0,$"] {_menuItems[index]}");
 
-            Console.WriteLine("\r\n--------------------");
-            
+            UI.Separator();
         }
     }
 }
