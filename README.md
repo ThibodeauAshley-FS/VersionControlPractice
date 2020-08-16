@@ -19,6 +19,7 @@ Here's what I worked on this past week...
 **Week 1**: This week I have worked on a variety of tasks from making a C# project, Creating a GitHub student account, Learning Terminal Commands to better use GitHub, and using Markdown syntax. Though I found using Terminal challenging I’m excited to get more familiar with it and see what follows in the weeks to come. 
 
 **Week 2**:    
+This week was quite busy as we touch on multiple topics including OOP, UML. We also continued upon last weeks topics of Markup syntax, maintaining, managing and iterate code within a repositiory by adding new elements to the projects we are working on and Updating them with new feedback acquired throughout the week. Along with that, we also learned more indepth about UML and how it is utilized in planning enviroments in todays industrys.  
 
 **Week 3**:    
 
@@ -32,7 +33,7 @@ Here's what I worked on this past week...
 
 - [X] Repo Created: Complete! 
 - [X] Milestone 1: Complete
-- [ ] Milestone 2: status 
+- [X] Milestone 2: Complete 
 - [ ] Milestone 3: status
 - [ ] Milestone 4: status
 
