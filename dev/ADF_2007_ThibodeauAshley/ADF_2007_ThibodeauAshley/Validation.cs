@@ -20,8 +20,7 @@ namespace ADF_2007_ThibodeauAshley
             while(string.IsNullOrWhiteSpace(userResponse))
             {
                 //Error Message
-                Console.WriteLine("\r\n--------------------");
-                Console.WriteLine("Sorry! This input requires an entry and cannot be left blank.");
+                UI.Error("Sorry! This input requires an entry and cannot be left blank.");
                 Console.Write($"\r\n{inputMessage}");
                 userResponse = Console.ReadLine();
             }
@@ -39,8 +38,7 @@ namespace ADF_2007_ThibodeauAshley
             while(!(int.TryParse(userResponse,out userResponseNumber)) || userResponseNumber < 0)
             {
                 //Error Message
-                Console.WriteLine("\r\n--------------------");
-                Console.WriteLine("Sorry! This input requires a number.");
+                UI.Error("Sorry! This input requires a number.");
                 Console.Write($"\r\n{inputMessage}");
                 userResponse = Console.ReadLine();
             }
