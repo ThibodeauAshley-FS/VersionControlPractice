@@ -54,13 +54,13 @@ namespace ADF_2007_ThibodeauAshley
                 Console.Write($"{end}\r\n");
             }
             //Accent a number in a color string
-            public static void AccentString (string start, string accent, string end)
+            public static void AccentString (string start, string accent)
             {
                 Console.Write(start);
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write(accent);
                 Console.ResetColor();
-                Console.Write(end);
+                Console.WriteLine("\r\n");
             }
 
             //Error
@@ -71,6 +71,15 @@ namespace ADF_2007_ThibodeauAshley
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(text);
                 Console.ResetColor();
+            }
+
+            //Pause key entry to continue
+            public static void KeyPause()
+            {
+                Separator();
+                Console.WriteLine("Press any key to continue… ");
+                Console.ReadKey();
+                Console.Clear();
             }
 
         
