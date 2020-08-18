@@ -46,6 +46,24 @@ namespace ADF_2007_ThibodeauAshley
             return userResponseNumber;
         }
 
+        //Validates number is within range
+        public static int WithinRange(int userEntry, string inputMessage)
+        {
+            Console.Write(inputMessage);
+            string userResponse = Console.ReadLine();
+            int userResponseNumber;
+
+            while(!(int.TryParse(userResponse,out userResponseNumber)) || userResponseNumber < 0)
+            {
+                //Error Message
+                UI.Error("Sorry! The entry isn't within range.");
+                Console.Write($"\r\n{inputMessage}");
+                userResponse = Console.ReadLine();
+            }
+
+            return;
+        }
+
         
     }
 }
