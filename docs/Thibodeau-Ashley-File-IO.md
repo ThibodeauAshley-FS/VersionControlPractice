@@ -157,7 +157,7 @@ An application has more flexibility when it is able to both store and retrieve d
 **1. From your research and use of the StreamReader class, respond to the following.**
 
 
-- **A.** What namespace is used with the StreamReader class?: [ Response Here ]
+- **A.** What namespace is used with the StreamReader class?: System.IO
 - **B.** Describe how you would check to see if a file has any additional lines to read when using the StreamReader class: [ Response Here ]  
 - **C.** When creating a new StreamReader, what information is expected after the keyword "new"?
 [ Response Here: include an example ]
