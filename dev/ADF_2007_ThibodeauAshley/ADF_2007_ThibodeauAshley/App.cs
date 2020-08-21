@@ -6,18 +6,48 @@
  
  */
 using System;
+using System.Collections.Generic;
+using System.IO;
+
 namespace ADF_2007_ThibodeauAshley
 {
     public class App
     {
         //Fields
+        private string _path ="../../../Output/";
+        private string _file ="UserInformation.txt";
         private User _activeUser;
         private bool _loggedIn = false;
-        
+
+        Dictionary<int, List<User>> _userData = new Dictionary<int, List<User>>();
 
         //Constructor
         public App()
         {
+            using(StreamReader sr = new StreamReader(_path + _file))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] data = line.Split('|');
+
+                    int userKey = int.Parse(data[0].Trim());
+
+                    User userInfo = new User
+                    (
+                        data[1].Trim(),            // First Name
+                        data[2].Trim(),            // Last Name
+                        data[3].Trim(),            // Password 
+                        data[4].Trim(),            // City
+                        data[5].Trim()             // State
+                    );
+
+                    _userData.Add(userKey,new List<User>());
+                    _userData[userKey].Add(userInfo);
+                    
+                }
+            }
                 Menu menu = new Menu();
                 menu.Init
                 (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" }); 
@@ -67,6 +97,8 @@ namespace ADF_2007_ThibodeauAshley
                         break;
                     case 2:
                         _loggedIn = false;
+                        menu.Init
+                        (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" });
                         break;
                     default:
                         Console.WriteLine("\r\nOption not available");
@@ -102,7 +134,7 @@ namespace ADF_2007_ThibodeauAshley
         private void SignIn(Menu menu)
         {
 
-            if(_activeUser != null)
+            if(_userData.Count >= 0)
             {
                     //check to see if User.Login(activeUser) returns back a boolean value of true
                        bool vaildUser = User.Login(_activeUser);
@@ -112,12 +144,12 @@ namespace ADF_2007_ThibodeauAshley
                     {
                         _loggedIn = vaildUser;
 
-                        Menu loggedInMenu = new Menu();
-                        loggedInMenu.Init
-                        ( new string [] {$"Welcome {_activeUser.Name}!", "About", "Logout", "Exit"});
-                        loggedInMenu.Display();
+                        menu = new Menu();
+                        menu.Init
+                        ( new string [] {$"Welcome {_activeUser.Password}!", "About","Show Profile", "Logout", "Exit"});
+                        menu.Display();
 
-                        Selection(loggedInMenu);
+                        Selection(menu);
                         
                     }
 
