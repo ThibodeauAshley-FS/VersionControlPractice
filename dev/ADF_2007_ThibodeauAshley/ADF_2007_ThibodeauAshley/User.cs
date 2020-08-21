@@ -12,16 +12,21 @@ namespace ADF_2007_ThibodeauAshley
     public class User
     {
 
-        public string Name { get; set; }
-        public int ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Password { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
 
         //Constructor
-        public User(string name, int userId, string password)
+        public User(string fName, string lName, string password, string city, string state)
         {
-            Name = name;
-            ID = userId;
+            FirstName = fName;
+            LastName = lName;
             Password = password;
+            City = city;
+            State = state;
+
 
         }
 
