@@ -1,6 +1,6 @@
 ﻿/*
     Name:       Ashley Thibodeau
-    Date:       8.16.2020
+    Date:       8.21.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
     Assignment: 2.6 Data Integration 1
  
@@ -35,7 +35,7 @@ namespace ADF_2007_ThibodeauAshley
             string userResponse = Console.ReadLine();
             int userResponseNumber;
 
-            while(!(int.TryParse(userResponse,out userResponseNumber)) || userResponseNumber < 0)
+            while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) || userResponseNumber < 0)
             {
                 //Error Message
                 UI.Error("Sorry! This input requires a number.");
@@ -61,7 +61,7 @@ namespace ADF_2007_ThibodeauAshley
                 userResponse = Console.ReadLine();
             }
 
-            return;
+            return userResponseNumber;
         }
 
         
