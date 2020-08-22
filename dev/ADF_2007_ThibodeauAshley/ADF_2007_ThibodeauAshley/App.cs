@@ -83,7 +83,7 @@ namespace ADF_2007_ThibodeauAshley
                         About(menu);
                         break;
                     default:
-                        Console.WriteLine("\r\nOption not available");
+                        UI.Error("Option not available");
                         Continue(menu);
                         break;
 
@@ -113,7 +113,7 @@ namespace ADF_2007_ThibodeauAshley
                         Selection(menu);
                         break;
                     default:
-                        Console.WriteLine("\r\nOption not available");
+                        UI.Error("Option not available");
                         Continue(menu);
                         break;
 
@@ -196,7 +196,7 @@ namespace ADF_2007_ThibodeauAshley
             UI.Header($"Profile {user.FirstName}");
 
             //Display Name
-            UI.AvatarKitty($"  {UI.Cap(user.FirstName)} {UI.Cap(user.LastName)} \r\n", " Location: \r\n", $" {UI.Cap(user.City)},{user.State} \r\n");
+            UI.ProfilePicture($"  {UI.Capitalization(user.FirstName)} {UI.Capitalization(user.LastName)} \r\n", " Location: \r\n", $" {UI.Capitalization(user.City)},{user.State} \r\n");
 
             Continue(menu);
         }

@@ -11,11 +11,10 @@ namespace ADF_2007_ThibodeauAshley
     public class Validation
     {
 
-        //Validates a string entry
+        
         public static string UserStringEntry(string inputMessage)
         {
-            Console.Write(inputMessage);
-            string userResponse = Console.ReadLine();
+            string userResponse = UI.InputWithStrResponse(inputMessage);
 
             while(string.IsNullOrWhiteSpace(userResponse))
             {
@@ -28,11 +27,10 @@ namespace ADF_2007_ThibodeauAshley
             return userResponse;
         }
 
-        //Validates a Number entry
+        
         public static int UserNumberEntry(string inputMessage)
         {
-            Console.Write(inputMessage);
-            string userResponse = Console.ReadLine();
+            string userResponse = UI.InputWithStrResponse(inputMessage);
             int userResponseNumber;
 
             while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) || userResponseNumber < 0)
@@ -46,11 +44,10 @@ namespace ADF_2007_ThibodeauAshley
             return userResponseNumber;
         }
 
-        //Validates number is within range
-        public static int WithinRange(int userEntry, int maxRangeAmount, string inputMessage)
+        
+        public static int WithinRange(int maxRangeAmount, string inputMessage)
         {
-            Console.Write(inputMessage);
-            string userResponse = Console.ReadLine();
+            string userResponse = UI.InputWithStrResponse(inputMessage);
             int userResponseNumber;
 
             while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) && (userResponseNumber < 0 && userResponseNumber > maxRangeAmount))

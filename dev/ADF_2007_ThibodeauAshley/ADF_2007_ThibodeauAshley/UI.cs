@@ -64,7 +64,7 @@ namespace ADF_2007_ThibodeauAshley
             }
 
             //Capitalize the first letter of a word
-            public static string Cap(string text)
+            public static string Capitalization(string text)
             {
                 text = char.ToUpper(text[0]) + text.Substring(1);
 
@@ -95,23 +95,33 @@ namespace ADF_2007_ThibodeauAshley
             }
 
             //Displays an Avatar
-            public static void AvatarKitty(string name, string loc, string city)
+            public static void ProfilePicture(string name, string loc, string city)
             {
-                AccentPicColor("\r\n╔═══◦✿◦═══╗",$"{name}");
-                AccentPicColor("‖ ","ᕱ___ᕱ  ");            
-                AccentPicColor(" ‖ \r\n|","(=^ᴥ^=) ");
-                AccentPicColor(" | ",$"{loc}");
-                AccentPicColor("‖ ","((￣))/)");
-                AccentPicColor("‖ ",$"{city}");
-                AccentPicColor("╚═══◦✿◦═══╝","\r\n\r\n");
+                ProfilePictureColor("\r\n╔═══◦✿◦═══╗",$"{name}");
+                ProfilePictureColor("‖ ","ᕱ___ᕱ  ");            
+                ProfilePictureColor(" ‖ \r\n|","(=^ᴥ^=) ");
+                ProfilePictureColor(" | ",$"{loc}");
+                ProfilePictureColor("‖ ","((￣))/)");
+                ProfilePictureColor("‖ ",$"{city}");
+                ProfilePictureColor("╚═══◦✿◦═══╝","\r\n\r\n");
                 
             }
-            public static void AccentPicColor(string colorText, string normText)
+
+            
+            public static void ProfilePictureColor(string colorText, string normText)
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(colorText);
                 Console.ResetColor();
                 Console.Write(normText);
+            }
+
+            public static string InputWithStrResponse(string inputMessage)
+            {
+                Console.Write(inputMessage);
+                string userResponse = Console.ReadLine();
+
+                return userResponse;
             }
 
             //Pause key entry to continue
