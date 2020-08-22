@@ -196,10 +196,10 @@ namespace ADF_2007_ThibodeauAshley
             UI.Header($"Profile {user.FirstName}");
 
             //Display Name
-            Console.WriteLine($" Full Name: {UI.Cap(user.FirstName)} {UI.Cap(user.LastName)} \r\n");
+            UI.AvatarBunny($"  {UI.Cap(user.FirstName)} {UI.Cap(user.LastName)} \r\n"," Location: \r\n",$" {UI.Cap(user.City)},{user.State} \r\n");
             //Display Location
-            Console.WriteLine(" Location: ");
-            Console.WriteLine($" {UI.Cap(user.City)},{user.State} \r\n");
+            //Console.WriteLine(" Location: ");
+            //Console.WriteLine($" {UI.Cap(user.City)},{user.State} \r\n");
 
             Continue(menu);
         }
