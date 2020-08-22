@@ -1,6 +1,6 @@
 ﻿/*
     Name:       Ashley Thibodeau
-    Date:       8.16.2020
+    Date:       8.21.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
     Assignment: 2.6 Data Integration 1
  
@@ -24,6 +24,7 @@ namespace ADF_2007_ThibodeauAshley
         //Constructor
         public App()
         {
+            //Reads text file and stores the information in dictionary
             using(StreamReader sr = new StreamReader(_path + _file))
             {
                 string line;
@@ -48,12 +49,15 @@ namespace ADF_2007_ThibodeauAshley
                     
                 }
             }
-                Menu menu = new Menu();
-                menu.Init
-                (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" }); 
-                menu.Display();
 
-                Selection(menu);
+            //Instantiate new Menu
+            Menu menu = new Menu();
+
+            menu.Init
+            (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" }); 
+            menu.Display();
+
+            Selection(menu);
         }
 
 
@@ -62,7 +66,7 @@ namespace ADF_2007_ThibodeauAshley
         {
             int choice = Validation.UserNumberEntry("Select a Menu Option: _");
 
-            if(_loggedIn == false)
+            if(_loggedIn == false && _activeUser == null)
             {
                 switch (choice)
                 {
@@ -96,9 +100,17 @@ namespace ADF_2007_ThibodeauAshley
                         About(menu);
                         break;
                     case 2:
+                        ShowProfile(_activeUser,menu);
+                        break;
+                    case 3:
                         _loggedIn = false;
-                        menu.Init
-                        (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" });
+                        _activeUser = null;
+                            menu = new Menu();
+                            menu.Init
+                            (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" });
+                            menu.Display();
+
+                            Selection(menu);
                         break;
                     default:
                         Console.WriteLine("\r\nOption not available");
@@ -112,46 +124,60 @@ namespace ADF_2007_ThibodeauAshley
 
         }
 
-        //The CreateUser method will clear the console, and then ask the user to type in a name and password.
-        private User CreateUser(Menu menu)
+        //The CreateUser method will clear the console, and then ask the user to type in their information and add it to text file.
+        private void CreateUser(Menu menu)
         {
+            //Generate Random Unique ID
+            Random random = new Random();
+            int rnd = random.Next(11111,99999);
+
             UI.Header("Create User");
 
-            string newUsername = Validation.UserStringEntry(" Name: _");
-            
+            //User Input Information
+            string newUserFirstName = Validation.UserStringEntry(" First Name: _");
+            string newUserLastName = Validation.UserStringEntry(" Last Name: _");
             string newPassword = Validation.UserStringEntry(" Password: _");
+            string newCity = Validation.UserStringEntry(" City: _");
+            string newState = Validation.UserStringEntry(" State: _");
 
-            _activeUser = new User(newUsername,12345,newPassword);
+            User newUser = new User(newUserFirstName,newUserLastName,newPassword,newCity,newState);
+            _userData.Add(rnd,new List<User>());
+            _userData[rnd].Add(newUser);
+
+            //Write new user to text file
+            using(StreamWriter sw = File.AppendText(_path+_file))
+            {
+                sw.WriteLine($"{rnd} | {newUser.FirstName.ToLower()} | {newUser.LastName.ToLower()} | {newUser.Password} | {newUser.City.ToLower()} | {newUser.State}");
+            }
+
 
             UI.Separator();
-            UI.AccentString("\r\n New UserID: ",$"{_activeUser.ID}");
+            UI.AccentString("\r\n New UserID: ",$"{rnd}");
 
             Continue(menu);
 
-            return _activeUser;
         }
 
+        //Requests UserId and Password to login. If correct information assigns the active user
         private void SignIn(Menu menu)
         {
-
-            if(_userData.Count >= 0)
+            if(_userData.Count > 0)
             {
                     //check to see if User.Login(activeUser) returns back a boolean value of true
-                       bool vaildUser = User.Login(_activeUser);
-                    
-                    //If true, the Menu.Init method is run
-                    if(vaildUser == true)
+                    _activeUser = User.Login(_activeUser,_userData);
+
+                    if(_activeUser != null)
                     {
-                        _loggedIn = vaildUser;
+                        _loggedIn = true;
 
                         menu = new Menu();
                         menu.Init
-                        ( new string [] {$"Welcome {_activeUser.Password}!", "About","Show Profile", "Logout", "Exit"});
+                        ( new string [] {$"Welcome {_activeUser.FirstName}!", "About","Show Profile", "Logout", "Exit"});
                         menu.Display();
 
                         Selection(menu);
-                        
-                    }
+
+                    }    
 
             }
             else
@@ -160,10 +186,22 @@ namespace ADF_2007_ThibodeauAshley
                 Selection(menu);
             }
 
+            Continue(menu);
+
+        }
+
+        //Displays user profile
+        private void ShowProfile(User user, Menu menu)
+        {
+            UI.Header($"Profile {user.FirstName}");
+
+            //Display Name
+            Console.WriteLine($" Full Name: {UI.Cap(user.FirstName)} {UI.Cap(user.LastName)} \r\n");
+            //Display Location
+            Console.WriteLine(" Location: ");
+            Console.WriteLine($" {UI.Cap(user.City)},{user.State} \r\n");
 
             Continue(menu);
-            
-
         }
 
 
@@ -182,12 +220,13 @@ namespace ADF_2007_ThibodeauAshley
         private static void Exit()
         {
             UI.Header("Exiting....");
+            Environment.Exit(0);
         }
 
         //Prints message to console, waits for users response to clear
         private void Continue(Menu menu)
         {
-            UI.KeyPause();
+            UI.KeyPause("Press any key to continue_ ");
 
             menu.Display();
             Selection(menu);
