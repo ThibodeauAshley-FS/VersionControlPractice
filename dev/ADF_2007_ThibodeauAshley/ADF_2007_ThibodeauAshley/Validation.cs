@@ -47,13 +47,13 @@ namespace ADF_2007_ThibodeauAshley
         }
 
         //Validates number is within range
-        public static int WithinRange(int userEntry, string inputMessage)
+        public static int WithinRange(int userEntry, int maxRangeAmount, string inputMessage)
         {
             Console.Write(inputMessage);
             string userResponse = Console.ReadLine();
             int userResponseNumber;
 
-            while(!(int.TryParse(userResponse,out userResponseNumber)) || userResponseNumber < 0)
+            while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) && (userResponseNumber < 0 && userResponseNumber > maxRangeAmount))
             {
                 //Error Message
                 UI.Error("Sorry! The entry isn't within range.");
