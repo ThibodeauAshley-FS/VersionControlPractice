@@ -97,39 +97,21 @@ namespace ADF_2007_ThibodeauAshley
             //Displays an Avatar
             public static void AvatarBunny(string name, string loc, string city)
             {
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write("\r\n|========|");
-            Console.ResetColor();
-                Console.Write($"{name}");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write("| ");
-            Console.ResetColor();
-            
-                Console.Write("(|_/) ");
-            
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write(" | \r\n"); 
-                Console.Write("|");
-            Console.ResetColor();
-                Console.Write("(>^ᴥ^<) ");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write("| ");
-            Console.ResetColor();
-            Console.Write($"{loc}");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write("| ");
-            Console.ResetColor();
-            
-                Console.Write("(u u)o ");
-
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write("| ");
-            Console.ResetColor();
-            Console.Write($"{city}");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("|========|\r\n");
-            Console.ResetColor();
+                AccentPicColor("\r\n╔═══◦✿◦═══╗",$"{name}");
+                AccentPicColor("‖ ","ᕱ___ᕱ  ");            
+                AccentPicColor(" ‖ \r\n|","(=^ᴥ^=) ");
+                AccentPicColor(" | ",$"{loc}");
+                AccentPicColor("‖ ","((￣))/)");
+                AccentPicColor("‖ ",$"{city}");
+                AccentPicColor("╚═══◦✿◦═══╝","\r\n\r\n");
                 
+            }
+            public static void AccentPicColor(string colorText, string normText)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(colorText);
+                Console.ResetColor();
+                Console.Write(normText);
             }
 
             //Pause key entry to continue
