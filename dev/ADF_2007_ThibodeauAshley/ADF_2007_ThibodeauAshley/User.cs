@@ -1,11 +1,12 @@
 ﻿/*
     Name:       Ashley Thibodeau
-    Date:       8.16.2020
+    Date:       8.21.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
     Assignment: 2.6 Data Integration 1
  
  */
 using System;
+using System.Collections.Generic;
 
 namespace ADF_2007_ThibodeauAshley
 {
@@ -27,33 +28,63 @@ namespace ADF_2007_ThibodeauAshley
             City = city;
             State = state;
 
-
         }
 
-        public static bool Login(User user)
+        //Asks user for login information, verifies then outputs a user
+        public static User Login(User user, Dictionary<int, List<User>> userInfo)
         {
+            bool userEntryAttempt = false;
+            
             UI.Header( "Login");
 
-            int entryNumber = Validation.UserNumberEntry(" UserID: _");
-            string entryString = Validation.UserStringEntry(" Password: _");
+            int userKeyEntry = Validation.UserNumberEntry(" UserID: _");
+            string passwordEntry = Validation.UserStringEntry(" Password: _");
 
-            if ((entryNumber == user.ID && entryString == user.Password))
+            while(userEntryAttempt != true)
             {
-                UI.Separator();
-                Console.WriteLine("User Found");
-                UI.KeyPause();
+                if(!(userInfo.ContainsKey(userKeyEntry)))
+                {
+                    UI.Error("Sorry: UserId is invalid. Please try again");
+                    UI.KeyPause("Press any key to continue _");
 
-                return true;
+                    UI.Header( "Login");
+                    userKeyEntry = Validation.UserNumberEntry(" UserID: _");
+                    passwordEntry = Validation.UserStringEntry(" Password: _");
+               
+                }
+
+                foreach(KeyValuePair<int,List<User>> userItem in userInfo)
+                {
+                    if (userKeyEntry == userItem.Key)
+                    {
+
+                        foreach(User userData in userItem.Value)
+                        {
+                            if(passwordEntry == userData.Password)
+                            {
+                                user = new User(userData.FirstName,userData.LastName,userData.Password,userData.City, userData.State);
+                                userEntryAttempt = true;
+                            }
+                            else
+                            {
+                                UI.Error("Sorry: The password entered is not correct. Please try again");
+                                UI.KeyPause("Press any key to continue _");
+
+                                UI.Header( "Login");
+                                userKeyEntry = Validation.UserNumberEntry(" UserID: _");
+                                passwordEntry = Validation.UserStringEntry(" Password: _");
+                            }
+                        }
+                           
+                    }
+
+
+                }
+
+
             }
-            else
-            {
-                UI.Separator();
-                Console.WriteLine("User login not recognized");
-                
 
-                return false;
-            }
-
+            return user;
            
         }
 
