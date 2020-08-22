@@ -1,6 +1,6 @@
 ﻿/*
     Name:       Ashley Thibodeau
-    Date:       8.16.2020
+    Date:       8.21.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
     Assignment: 2.6 Data Integration 1
  
@@ -63,6 +63,27 @@ namespace ADF_2007_ThibodeauAshley
                 Console.WriteLine("\r\n");
             }
 
+            //Capitalize the first letter of a word
+            public static string Cap(string text)
+            {
+                text = char.ToUpper(text[0]) + text.Substring(1);
+
+                return text;
+            }
+
+            //Blocks Password
+            public static void HiddenPassword(string text)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.ResetColor();
+            }
+
             //Error
             public static void Error(string text)
             {
@@ -73,15 +94,23 @@ namespace ADF_2007_ThibodeauAshley
                 Console.ResetColor();
             }
 
+            //Displays an Avatar
+            public static void Avatar()
+            {
+                Console.WriteLine("_____");
+                Console.WriteLine("_____");
+            }
+
             //Pause key entry to continue
-            public static void KeyPause()
+            public static void KeyPause(string text)
             {
                 Separator();
-                Console.WriteLine("Press any key to continue… ");
+                Console.Write(text);
                 Console.ReadKey();
                 Console.Clear();
             }
-
+            //"Press any key to continue_ "
+            //"Return to Home Menu: _"
         
     }
 
