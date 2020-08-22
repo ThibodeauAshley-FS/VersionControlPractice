@@ -57,7 +57,7 @@ namespace ADF_2007_ThibodeauAshley
             public static void AccentString (string start, string accent)
             {
                 Console.Write(start);
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.Write(accent);
                 Console.ResetColor();
                 Console.WriteLine("\r\n");
@@ -95,10 +95,41 @@ namespace ADF_2007_ThibodeauAshley
             }
 
             //Displays an Avatar
-            public static void Avatar()
+            public static void AvatarBunny(string name, string loc, string city)
             {
-                Console.WriteLine("_____");
-                Console.WriteLine("_____");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write("\r\n|========|");
+            Console.ResetColor();
+                Console.Write($"{name}");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write("| ");
+            Console.ResetColor();
+            
+                Console.Write("(|_/) ");
+            
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(" | \r\n"); 
+                Console.Write("|");
+            Console.ResetColor();
+                Console.Write("(>^ᴥ^<) ");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write("| ");
+            Console.ResetColor();
+            Console.Write($"{loc}");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write("| ");
+            Console.ResetColor();
+            
+                Console.Write("(u u)o ");
+
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write("| ");
+            Console.ResetColor();
+            Console.Write($"{city}");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("|========|\r\n");
+            Console.ResetColor();
+                
             }
 
             //Pause key entry to continue
