@@ -22,15 +22,9 @@ A dictionary is useful for working with data. Identify what's wrong with the cod
 
 Identify at least three issues with the code and how each can be fixed... 
 
-- **Issue 1:** KeyNotFoundException: The given key 'C#' was not present in the dictionary.
- *  change this: `{ "C", new List<string>()},` 
- *  to this: ` { "C#", new List<string>()},`
-- **Issue 2:**  *** [C#, System.Collections.Generic.List`1[System.String]] *******
- * Foreach item will display key, and type of list, not its contents. Foreach item.Key the item.Value must be looped to display its contents.
- * change this: `Console.WriteLine($"\n*** {item} *******");` 
- * to this: `Console.WriteLine($"\n*** {item.Key} *******");`
-- **Issue 3:** Missing list value entry for SQL
- * ADD: `myBooks["SQL"].Add("Practical SQL");`
+- **Issue 1:** [ Describe issue and how this can be fixed ]  
+- **Issue 2:** [ Describe issue and how this can be fixed ]  
+- **Issue 3:** [ Describe issue and how this can be fixed ]
 
   
     
@@ -83,16 +77,9 @@ Identify what's wrong with the code block below. How would you fix the issue(s)?
 
 Identify at least three issues with the code and how each can be fixed... 
 
-- **Issue 1:** Missing setting the parameters to the fields in the User Constructor
- * ADD to user constructor:   
-     `Name = name;` `City = city;` `State = state;` `Id = id;`
-	 
-- **Issue 2:**  `Console.WriteLine($"\n*** {userCategory} *******");`
- * Prints both key and list value type because 
- * change to `Console.WriteLine($"\n*** {userCategory.Key} *******");`
-- **Issue 3:** `foreach (var individual in userCategory)`
- * foreach statement cannot operate on its set variables(string, list of user data) because the variables are not properly called. To be more specific, the values of the user data list is not properly called for each key item in the outer foreach loop.
- * change to: `foreach (var individual in userCategory.Value)`
+- **Issue 1:** [ Describe issue and how this can be fixed ]  
+- **Issue 2:** [ Describe issue and how this can be fixed ]  
+- **Issue 3:** [ Describe issue and how this can be fixed ]
 
  
 ```c#
@@ -170,12 +157,10 @@ An application has more flexibility when it is able to both store and retrieve d
 **1. From your research and use of the StreamReader class, respond to the following.**
 
 
-- **A.** What namespace is used with the StreamReader class?: 
- - System.IO
-- **B.** Describe how you would check to see if a file has any additional lines to read when using the StreamReader class:
- - you would check to see if a file has any additional lines to read by using a while loop until the value is returned as Null.
+- **A.** What namespace is used with the StreamReader class?: System.IO
+- **B.** Describe how you would check to see if a file has any additional lines to read when using the StreamReader class: [ Response Here ]  
 - **C.** When creating a new StreamReader, what information is expected after the keyword "new"?
- - It is expecting a new StreamerReader and path to the file
+[ Response Here: include an example ]
 
 
 **2. Demonstrate how to use the StreamWriter class to write to a file. Include the following: A using statement, a StreamWriter object, and use of the File.AppendText() method. Explain each part of the code in your own words.**

@@ -14,8 +14,9 @@ namespace ADF_2007_ThibodeauAshley
     public class App
     {
         //Fields
-        private string _path ="../../../Output/";
-        private string _file ="UserInformation.txt";
+        private readonly string _path = "../../../Output/";
+        private readonly string _file = "UserInformation.txt";
+       
         private User _activeUser;
         private bool _loggedIn = false;
 
@@ -25,7 +26,7 @@ namespace ADF_2007_ThibodeauAshley
         public App()
         {
             //Reads text file and stores the information in dictionary
-            using(StreamReader sr = new StreamReader(_path + _file))
+            using (StreamReader sr = new StreamReader(_path + _file))
             {
                 string line;
 
@@ -44,9 +45,9 @@ namespace ADF_2007_ThibodeauAshley
                         data[5].Trim()             // State
                     );
 
-                    _userData.Add(userKey,new List<User>());
+                    _userData.Add(userKey, new List<User>());
                     _userData[userKey].Add(userInfo);
-                    
+
                 }
             }
 
@@ -54,9 +55,8 @@ namespace ADF_2007_ThibodeauAshley
             Menu menu = new Menu();
 
             menu.Init
-            (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" }); 
+            (new string[] { "Main Menu", "Create User", "Login", "About", "Exit" });
             menu.Display();
-
             Selection(menu);
         }
 
@@ -66,7 +66,7 @@ namespace ADF_2007_ThibodeauAshley
         {
             int choice = Validation.UserNumberEntry("Select a Menu Option: _");
 
-            if(_loggedIn == false && _activeUser == null)
+            if (_loggedIn == false && _activeUser == null)
             {
                 switch (choice)
                 {
@@ -86,7 +86,7 @@ namespace ADF_2007_ThibodeauAshley
                         Console.WriteLine("\r\nOption not available");
                         Continue(menu);
                         break;
-                   
+
                 }
             }
             else
@@ -100,27 +100,27 @@ namespace ADF_2007_ThibodeauAshley
                         About(menu);
                         break;
                     case 2:
-                        ShowProfile(_activeUser,menu);
+                        ShowProfile(_activeUser, menu);
                         break;
                     case 3:
                         _loggedIn = false;
                         _activeUser = null;
-                            menu = new Menu();
-                            menu.Init
-                            (new string[] {  "Main Menu", "Create User", "Login", "About", "Exit" });
-                            menu.Display();
+                        menu = new Menu();
+                        menu.Init
+                        (new string[] { "Main Menu", "Create User", "Login", "About", "Exit" });
+                        menu.Display();
 
-                            Selection(menu);
+                        Selection(menu);
                         break;
                     default:
                         Console.WriteLine("\r\nOption not available");
                         Continue(menu);
                         break;
-                   
+
                 }
             }
 
-            
+
 
         }
 
@@ -129,7 +129,7 @@ namespace ADF_2007_ThibodeauAshley
         {
             //Generate Random Unique ID
             Random random = new Random();
-            int rnd = random.Next(11111,99999);
+            int rnd = random.Next(11111, 99999);
 
             UI.Header("Create User");
 
@@ -140,19 +140,19 @@ namespace ADF_2007_ThibodeauAshley
             string newCity = Validation.UserStringEntry(" City: _");
             string newState = Validation.UserStringEntry(" State: _");
 
-            User newUser = new User(newUserFirstName,newUserLastName,newPassword,newCity,newState);
-            _userData.Add(rnd,new List<User>());
+            User newUser = new User(newUserFirstName, newUserLastName, newPassword, newCity, newState);
+            _userData.Add(rnd, new List<User>());
             _userData[rnd].Add(newUser);
 
             //Write new user to text file
-            using(StreamWriter sw = File.AppendText(_path+_file))
+            using (StreamWriter sw = File.AppendText(_path + _file))
             {
                 sw.WriteLine($"{rnd} | {newUser.FirstName.ToLower()} | {newUser.LastName.ToLower()} | {newUser.Password} | {newUser.City.ToLower()} | {newUser.State}");
             }
 
 
             UI.Separator();
-            UI.AccentString("\r\n New UserID: ",$"{rnd}");
+            UI.AccentString("\r\n New UserID: ", $"{rnd}");
 
             Continue(menu);
 
@@ -161,23 +161,23 @@ namespace ADF_2007_ThibodeauAshley
         //Requests UserId and Password to login. If correct information assigns the active user
         private void SignIn(Menu menu)
         {
-            if(_userData.Count > 0)
+            if (_userData.Count > 0)
             {
-                    //check to see if User.Login(activeUser) returns back a boolean value of true
-                    _activeUser = User.Login(_activeUser,_userData);
+                //check to see if User.Login(activeUser) returns back a boolean value of true
+                _activeUser = User.Login(_activeUser, _userData);
 
-                    if(_activeUser != null)
-                    {
-                        _loggedIn = true;
+                if (_activeUser != null)
+                {
+                    _loggedIn = true;
 
-                        menu = new Menu();
-                        menu.Init
-                        ( new string [] {$"Welcome {_activeUser.FirstName}!", "About","Show Profile", "Logout", "Exit"});
-                        menu.Display();
+                    menu = new Menu();
+                    menu.Init
+                    (new string[] { $"Welcome {_activeUser.FirstName}!", "About", "Show Profile", "Logout", "Exit" });
+                    menu.Display();
 
-                        Selection(menu);
+                    Selection(menu);
 
-                    }    
+                }
 
             }
             else
@@ -196,10 +196,7 @@ namespace ADF_2007_ThibodeauAshley
             UI.Header($"Profile {user.FirstName}");
 
             //Display Name
-            UI.AvatarBunny($"  {UI.Cap(user.FirstName)} {UI.Cap(user.LastName)} \r\n"," Location: \r\n",$" {UI.Cap(user.City)},{user.State} \r\n");
-            //Display Location
-            //Console.WriteLine(" Location: ");
-            //Console.WriteLine($" {UI.Cap(user.City)},{user.State} \r\n");
+            UI.AvatarKitty($"  {UI.Cap(user.FirstName)} {UI.Cap(user.LastName)} \r\n", " Location: \r\n", $" {UI.Cap(user.City)},{user.State} \r\n");
 
             Continue(menu);
         }
@@ -231,6 +228,6 @@ namespace ADF_2007_ThibodeauAshley
             menu.Display();
             Selection(menu);
         }
-        
+
     }
 }
