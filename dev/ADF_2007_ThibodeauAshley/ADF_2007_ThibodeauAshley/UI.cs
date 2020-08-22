@@ -95,7 +95,7 @@ namespace ADF_2007_ThibodeauAshley
             }
 
             //Displays an Avatar
-            public static void AvatarBunny(string name, string loc, string city)
+            public static void AvatarKitty(string name, string loc, string city)
             {
                 AccentPicColor("\r\n╔═══◦✿◦═══╗",$"{name}");
                 AccentPicColor("‖ ","ᕱ___ᕱ  ");            
