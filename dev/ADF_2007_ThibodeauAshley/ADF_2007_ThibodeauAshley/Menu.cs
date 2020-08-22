@@ -41,7 +41,6 @@ namespace ADF_2007_ThibodeauAshley
 
             int index = _menuItems.IndexOf("Exit");
             UI.AccentNumber("\r\n [",0,$"] {_menuItems[index]}");
-
             UI.Separator();
         }
     }
