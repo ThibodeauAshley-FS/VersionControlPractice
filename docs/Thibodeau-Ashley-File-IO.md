@@ -181,16 +181,30 @@ An application has more flexibility when it is able to both store and retrieve d
 **2. Demonstrate how to use the StreamWriter class to write to a file. Include the following: A using statement, a StreamWriter object, and use of the File.AppendText() method. Explain each part of the code in your own words.**
 
 ```
+//StreamWriter writes to a text file therefore when implimenting it, it must include the location of 
+	the text file it's best to store the path and file name as private fields.
+//When StreamWriter object is called it has to be closed. 
+	Using the using statement is a dispose method that will close the streamwriter after it has 
+	completed its function. 
+	
+using( StreamWriter sw = File.AppendText(_path + _file))
+{
+	sw.WriteLine($"{newMovie.Title} | {newMovie.Year} | {newMovie.Director} |{newMovie.Summary}");
+}
 
-[ Provide Code here with comments... ]
-
+//The AppendText method adds to the end of the text file rather than rewritting it.
+//The WriteLine method used along with string interpolation writes the new line string to the end of
+	the file. 
 
 ```
     
 
 **3. What is the difference between a property and an auto implemented property? When would you use one over the other..**
 
-[ Response Here ]
+	
+Properties use accessors to get and set information while protecting the private fields they are accessing. 
+Basic properties are materialized as methods but while getting and setting information they can also compute additional logic whereas, auto implemented properties dont handle addtional logic and just use the accessors to get and/or set information. If you dont need addtional logic, use auto properties; If you do, use the regular version.
+
 
 
 
@@ -198,9 +212,16 @@ An application has more flexibility when it is able to both store and retrieve d
 
 
 ```
+//To access a static member from outside the class, the class name is used followed by the 
+	dot operator.
 
-[ Provide Code here with comments... ]
-
+    public static void Ball()
+    {
+        //Call Static function
+        UI.BallColor();
+    }
+//The advantage of static members is that they can be used by other classes without having to 
+	create an instance of the class.
 
 ```
 
@@ -210,25 +231,24 @@ An application has more flexibility when it is able to both store and retrieve d
 Replace the example references below with your own independent research. Do not use material already provided to you in this class. Two or more references are needed for each topic below.
 
 **Working with Data**  
-[Site Address](https://www.someaddress.com/full/url/)  
+[Site Address](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)  
 
-[ Summarize Here: How did this resource help you? ]
+Along with the reading of Chapter 15: Properties of the C# Quick Syntax, I wanted a general definition of properties. I thought this helped when it came to getting a general understanding of it. I find it helpful when it comes to learning when I dont have a long reading and I can have key points to what it is without extra fluff. 
 
 
-[Site Address](https://www.someaddress.com/full/url/)  
+[Site Address](https://stackoverflow.com/questions/6001917/what-are-automatic-properties-in-c-sharp-and-what-is-their-purpose)  
 
-[ Summarize Here: How did this resource help you? ]
+This thread is helpful in explaining the differences between when and when not to use the different versions of auto-properties. It was nice to read about other peoples perspectives on the matter.
 
 
 **Read and Write Data**  
-[Site Address](https://www.someaddress.com/full/url/)
+[Site Address](https://docs.microsoft.com/en-us/dotnet/api/system.io.streamreader?view=netcore-3.1)
 
-[ Summarize Here: How did this resource help you? ]
+This was helpful in reading over the different methods associated with the streamreader class like the Peek() which returns the next available charactor but doesn not comsume it.
 
+[Site Address](https://docs.microsoft.com/en-us/dotnet/api/system.io.streamwriter?view=netcore-3.1)  
 
-[Site Address](https://www.someaddress.com/full/url/)  
-
-[ Summarize Here: How did this resource help you? ]
+I thought this gave some very good examples and concise information on the different properties used with the stream writer.
 
 
 
