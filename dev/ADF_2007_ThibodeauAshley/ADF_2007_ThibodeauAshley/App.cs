@@ -13,17 +13,21 @@ namespace ADF_2007_ThibodeauAshley
 {
     public class App
     {
+        Dictionary<int, List<User>> _userData = new Dictionary<int, List<User>>();
+
         //Fields
         private User _activeUser;
-        
+        private bool _loggedIn = false;
+        private Menu _menu;
+
+        private static string _name = " ";
+
         private static readonly string _path = "../../../Output/";
         private static readonly string _file = "UserInformation.txt";
         private static readonly string[] mainMenu = new string[] { "Main Menu", "Create User", "Login", "About", "Exit" };
-        private static readonly string[] profileMenu = new string[] { $"Welcome", "About", "Show Profile", "Users", "Logout", "Exit" };
+        private readonly string[] profileMenu = new string[] { $"Welcome", "About", "Show Profile", "Users", "Logout", "Exit" };
         
-        private bool _loggedIn = false;
-
-        Dictionary<int, List<User>> _userData = new Dictionary<int, List<User>>();
+        
 
         //Constructor
         public App()
@@ -54,19 +58,29 @@ namespace ADF_2007_ThibodeauAshley
                 }
             }
 
-            //Instantiate new Menu
-            Menu menu = new Menu();
+            _menu = new Menu();
 
-            menu.Init(mainMenu);
-            menu.Display();
-            Selection(menu);
+            _menu.Init(mainMenu, _name);
+            _menu.Display();
+
+            Selection(_menu);
+
         }
 
 
         //Asks the user to make a selection, user selection is then used in a switch statement
-        private void Selection(Menu menu)
+        public void Selection(Menu menu)
         {
-            int choice = Validation.UserNumberEntry("Select a Menu Option: _");
+            int choice = 0;
+
+            if(_loggedIn == false)
+            {
+                choice = Validation.WithinRange(Validation.UserNumberEntry("Select a Menu Option: _"), mainMenu.Length-1);
+            }
+            else
+            {
+                choice = Validation.WithinRange(Validation.UserNumberEntry("Select a Menu Option: _"), profileMenu.Length-1);
+            }
 
             if (_loggedIn == false && _activeUser == null)
             {
@@ -76,7 +90,7 @@ namespace ADF_2007_ThibodeauAshley
                         Exit();
                         break;
                     case 1:
-                        CreateUser(menu, _userData);
+                        CreateUser(menu);
                         break;
                     case 2:
                         SignIn(menu);
@@ -105,16 +119,18 @@ namespace ADF_2007_ThibodeauAshley
                         ShowProfile(_activeUser, menu);
                         break;
                     case 3:
-                        Users();
+                        Users(menu);
                         break;
                     case 4:
                         _loggedIn = false;
                         _activeUser = null;
-                        menu = new Menu();
-                        menu.Init(mainMenu);
-                        menu.Display();
+                        _name = " ";
 
-                        Selection(menu);
+                        _menu = new Menu();
+                        _menu.Init(mainMenu, _name);
+                        _menu.Display();
+
+                        Selection(_menu);
                         break;
                     default:
                         Format.Error("Option not available");
@@ -129,7 +145,7 @@ namespace ADF_2007_ThibodeauAshley
         }
 
         //The CreateUser method will clear the console, and then ask the user to type in their information and add it to text file.
-        private static void CreateUser(Menu menu, Dictionary<int, List<User>> data)
+        private void CreateUser(Menu menu)
         {
             //Generate Random Unique ID
             Random random = new Random();
@@ -145,8 +161,8 @@ namespace ADF_2007_ThibodeauAshley
             string newState = Validation.UserStringEntry(" State: _");
 
             User newUser = new User(newUserFirstName, newUserLastName, newPassword, newCity, newState);
-            data.Add(rnd, new List<User>());
-            data[rnd].Add(newUser);
+            _userData.Add(rnd, new List<User>());
+            _userData[rnd].Add(newUser);
 
             //Write new user to text file
             using (StreamWriter sw = File.AppendText(_path + _file))
@@ -173,12 +189,13 @@ namespace ADF_2007_ThibodeauAshley
                 if (_activeUser != null)
                 {
                     _loggedIn = true;
+                    _name = _activeUser.FirstName.ToString();
 
-                    menu = new Menu();
-                    menu.Init(profileMenu);
-                    menu.Display();
+                    _menu = new Menu();
+                    _menu.Init(profileMenu, _name);
+                    _menu.Display();
 
-                    Selection(menu);
+                    Selection(_menu);
 
                 }
 
@@ -193,7 +210,7 @@ namespace ADF_2007_ThibodeauAshley
 
         }
 
-        private static void ShowProfile(User user, Menu menu)
+        private void ShowProfile(User user, Menu menu)
         {
             Format.Header($"Profile {user.FirstName}");
 
@@ -202,7 +219,7 @@ namespace ADF_2007_ThibodeauAshley
             Continue(menu);
         }
 
-        private void Users()
+        private void Users(Menu menu)
         {
             Format.Header($"Profile {_activeUser.FirstName}");
             foreach(KeyValuePair<int,List<User>> accounts in _userData)
@@ -213,11 +230,14 @@ namespace ADF_2007_ThibodeauAshley
                 }
                 
             }
+
+            Continue(menu);
         }
 
 
-        private static void About(Menu menu)
+        private void About(Menu menu)
         {
+
             Console.Clear();
             Format.Header($" About");
 
@@ -233,12 +253,13 @@ namespace ADF_2007_ThibodeauAshley
             Environment.Exit(0);
         }
 
-        
         private void Continue(Menu menu)
         {
             Refactor.Pause("Press any key to continue_ ");
 
             menu.Display();
+
+            
             Selection(menu);
         }
 
