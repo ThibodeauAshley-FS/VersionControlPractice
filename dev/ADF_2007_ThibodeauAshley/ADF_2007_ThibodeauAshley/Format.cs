@@ -8,7 +8,7 @@
 using System;
 namespace ADF_2007_ThibodeauAshley
 {
-    public class UI
+    public class Format
     {
             public static void Header(string text)
             {
@@ -73,9 +73,9 @@ namespace ADF_2007_ThibodeauAshley
                 Console.ResetColor();
             }
 
-            public static void ProfilePicture(string name, string loc, string city)
+            public static void ProfileLayout(string name, string loc, string city)
             {
-                ProfilePictureColor("\r\n╔═══◦✿◦═══╗",$"{name}");
+                ProfilePictureColor("\r\n╔═══◦✿◦═══╗",$"  {name}");
                 ProfilePictureColor("‖ ","ᕱ___ᕱ  ");            
                 ProfilePictureColor(" ‖ \r\n|","(=^ᴥ^=) ");
                 ProfilePictureColor(" | ",$"{loc}");
@@ -86,7 +86,7 @@ namespace ADF_2007_ThibodeauAshley
             }
 
             
-            public static void ProfilePictureColor(string colorText, string normText)
+            private static void ProfilePictureColor(string colorText, string normText)
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(colorText);
