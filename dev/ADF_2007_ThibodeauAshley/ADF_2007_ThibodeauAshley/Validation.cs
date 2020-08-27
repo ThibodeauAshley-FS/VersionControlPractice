@@ -1,6 +1,6 @@
 ﻿/*
     Name:       Ashley Thibodeau
-    Date:       8.21.2020
+    Date:       8.27.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
     Assignment: 2.6 Data Integration 1
  
@@ -14,8 +14,8 @@ namespace ADF_2007_ThibodeauAshley
         
         public static string UserStringEntry(string inputMessage)
         {
-            string userResponse = UI.InputWithStrResponse(inputMessage);
-
+            string userResponse = Refactor.Input(inputMessage);
+            
             while(string.IsNullOrWhiteSpace(userResponse))
             {
                 //Error Message
@@ -30,7 +30,7 @@ namespace ADF_2007_ThibodeauAshley
         
         public static int UserNumberEntry(string inputMessage)
         {
-            string userResponse = UI.InputWithStrResponse(inputMessage);
+            string userResponse = Refactor.Input(inputMessage);
             int userResponseNumber;
 
             while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) || userResponseNumber < 0)
@@ -47,7 +47,7 @@ namespace ADF_2007_ThibodeauAshley
         
         public static int WithinRange(int maxRangeAmount, string inputMessage)
         {
-            string userResponse = UI.InputWithStrResponse(inputMessage);
+            string userResponse = Refactor.Input(inputMessage);
             int userResponseNumber;
 
             while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) && (userResponseNumber < 0 && userResponseNumber > maxRangeAmount))

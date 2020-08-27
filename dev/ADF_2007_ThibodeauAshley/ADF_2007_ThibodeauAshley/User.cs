@@ -1,6 +1,6 @@
 ﻿/*
     Name:       Ashley Thibodeau
-    Date:       8.21.2020
+    Date:       8.27.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
     Assignment: 2.6 Data Integration 1
  
@@ -45,7 +45,7 @@ namespace ADF_2007_ThibodeauAshley
                 if(!(userInfo.ContainsKey(userKeyEntry)))
                 {
                     UI.Error("Sorry: UserId is invalid. Please try again");
-                    UI.KeyPause("Press any key to continue _");
+                    Refactor.Pause("Press any key to continue _");
 
                     UI.Header( "Login");
                     userKeyEntry = Validation.UserNumberEntry(" UserID: _");
@@ -68,7 +68,7 @@ namespace ADF_2007_ThibodeauAshley
                             else
                             {
                                 UI.Error("Sorry: The password entered is not correct. Please try again");
-                                UI.KeyPause("Press any key to continue _");
+                                Refactor.Pause("Press any key to continue _");
 
                                 UI.Header( "Login");
                                 userKeyEntry = Validation.UserNumberEntry(" UserID: _");

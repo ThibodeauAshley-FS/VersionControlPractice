@@ -1,4 +1,4 @@
-﻿/*
+﻿    /*
     Name:       Ashley Thibodeau
     Date:       8.21.2020
     Class:      PROJECT AND PORTFOLIO I: APPLICATION DEVELOPMENT FUNDAMENTALS 
@@ -223,7 +223,7 @@ namespace ADF_2007_ThibodeauAshley
         //Prints message to console, waits for users response to clear
         private void Continue(Menu menu)
         {
-            UI.KeyPause("Press any key to continue_ ");
+            Refactor.Pause("Press any key to continue_ ");
 
             menu.Display();
             Selection(menu);
