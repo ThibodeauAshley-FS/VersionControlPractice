@@ -13,7 +13,7 @@ namespace ADF_2007_ThibodeauAshley
             
             public static void Pause(string text)
             {
-                UI.Separator();
+                Format.Separator();
                 Console.Write(text);
                 Console.ReadKey();
                 Console.Clear();

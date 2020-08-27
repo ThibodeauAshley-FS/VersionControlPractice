@@ -19,7 +19,7 @@ namespace ADF_2007_ThibodeauAshley
             while(string.IsNullOrWhiteSpace(userResponse))
             {
                 //Error Message
-                UI.Error("Sorry! This input requires an entry and cannot be left blank.");
+                Format.Error("Sorry! This input requires an entry and cannot be left blank.");
                 Console.Write($"\r\n{inputMessage}");
                 userResponse = Console.ReadLine();
             }
@@ -36,7 +36,7 @@ namespace ADF_2007_ThibodeauAshley
             while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) || userResponseNumber < 0)
             {
                 //Error Message
-                UI.Error("Sorry! This input requires a number.");
+                Format.Error("Sorry! This input requires a number.");
                 Console.Write($"\r\n{inputMessage}");
                 userResponse = Console.ReadLine();
             }
@@ -53,7 +53,7 @@ namespace ADF_2007_ThibodeauAshley
             while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) && (userResponseNumber < 0 && userResponseNumber > maxRangeAmount))
             {
                 //Error Message
-                UI.Error("Sorry! The entry isn't within range.");
+                Format.Error("Sorry! The entry isn't within range.");
                 Console.Write($"\r\n{inputMessage}");
                 userResponse = Console.ReadLine();
             }

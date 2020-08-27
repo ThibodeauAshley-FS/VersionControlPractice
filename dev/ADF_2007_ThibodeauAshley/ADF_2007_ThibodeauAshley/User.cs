@@ -35,7 +35,7 @@ namespace ADF_2007_ThibodeauAshley
         {
             bool userEntryAttempt = false;
             
-            UI.Header( "Login");
+            Format.Header( "Login");
 
             int userKeyEntry = Validation.UserNumberEntry(" UserID: _");
             string passwordEntry = Validation.UserStringEntry(" Password: _");
@@ -44,10 +44,10 @@ namespace ADF_2007_ThibodeauAshley
             {
                 if(!(userInfo.ContainsKey(userKeyEntry)))
                 {
-                    UI.Error("Sorry: UserId is invalid. Please try again");
+                    Format.Error("Sorry: UserId is invalid. Please try again");
                     Refactor.Pause("Press any key to continue _");
 
-                    UI.Header( "Login");
+                    Format.Header( "Login");
                     userKeyEntry = Validation.UserNumberEntry(" UserID: _");
                     passwordEntry = Validation.UserStringEntry(" Password: _");
                
@@ -67,10 +67,10 @@ namespace ADF_2007_ThibodeauAshley
                             }
                             else
                             {
-                                UI.Error("Sorry: The password entered is not correct. Please try again");
+                                Format.Error("Sorry: The password entered is not correct. Please try again");
                                 Refactor.Pause("Press any key to continue _");
 
-                                UI.Header( "Login");
+                                Format.Header( "Login");
                                 userKeyEntry = Validation.UserNumberEntry(" UserID: _");
                                 passwordEntry = Validation.UserStringEntry(" Password: _");
                             }

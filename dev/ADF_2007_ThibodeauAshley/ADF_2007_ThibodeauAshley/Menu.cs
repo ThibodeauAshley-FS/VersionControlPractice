@@ -18,7 +18,7 @@ namespace ADF_2007_ThibodeauAshley
 
         //Update the private member fields title and menuItems
         public void Init(string[] items)
-        { 
+        {
             _title = items[0].ToUpper();
 
             for (int i = 0; i < items.Length; i++)
@@ -31,17 +31,17 @@ namespace ADF_2007_ThibodeauAshley
         //Prints out to console the menu title and list of menu items
         public void Display()
         {
-            UI.Header(" "+ _title);
+            Format.Header(" "+ _title);
 
             for (int i = 1; i < _menuItems.Count-1; i++)
             {
-                UI.AccentNumber(" [",i,$"] {_menuItems[i]}");
+                Format.AccentNumber(" [",i,$"] {_menuItems[i]}");
 
             }
 
             int index = _menuItems.IndexOf("Exit");
-            UI.AccentNumber("\r\n [",0,$"] {_menuItems[index]}");
-            UI.Separator();
+            Format.AccentNumber("\r\n [",0,$"] {_menuItems[index]}");
+            Format.Separator();
         }
     }
 }
