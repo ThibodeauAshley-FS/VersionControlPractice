@@ -14,10 +14,13 @@ namespace ADF_2007_ThibodeauAshley
     public class App
     {
         //Fields
-        private readonly string _path = "../../../Output/";
-        private readonly string _file = "UserInformation.txt";
-       
         private User _activeUser;
+        
+        private static readonly string _path = "../../../Output/";
+        private static readonly string _file = "UserInformation.txt";
+        private static readonly string[] mainMenu = new string[] { "Main Menu", "Create User", "Login", "About", "Exit" };
+        private static readonly string[] profileMenu = new string[] { $"Welcome", "About", "Show Profile", "Users", "Logout", "Exit" };
+        
         private bool _loggedIn = false;
 
         Dictionary<int, List<User>> _userData = new Dictionary<int, List<User>>();
@@ -54,8 +57,7 @@ namespace ADF_2007_ThibodeauAshley
             //Instantiate new Menu
             Menu menu = new Menu();
 
-            menu.Init
-            (new string[] { "Main Menu", "Create User", "Login", "About", "Exit" });
+            menu.Init(mainMenu);
             menu.Display();
             Selection(menu);
         }
@@ -74,7 +76,7 @@ namespace ADF_2007_ThibodeauAshley
                         Exit();
                         break;
                     case 1:
-                        CreateUser(menu);
+                        CreateUser(menu, _userData);
                         break;
                     case 2:
                         SignIn(menu);
@@ -83,7 +85,7 @@ namespace ADF_2007_ThibodeauAshley
                         About(menu);
                         break;
                     default:
-                        UI.Error("Option not available");
+                        Format.Error("Option not available");
                         Continue(menu);
                         break;
 
@@ -103,17 +105,19 @@ namespace ADF_2007_ThibodeauAshley
                         ShowProfile(_activeUser, menu);
                         break;
                     case 3:
+                        Users();
+                        break;
+                    case 4:
                         _loggedIn = false;
                         _activeUser = null;
                         menu = new Menu();
-                        menu.Init
-                        (new string[] { "Main Menu", "Create User", "Login", "About", "Exit" });
+                        menu.Init(mainMenu);
                         menu.Display();
 
                         Selection(menu);
                         break;
                     default:
-                        UI.Error("Option not available");
+                        Format.Error("Option not available");
                         Continue(menu);
                         break;
 
@@ -125,13 +129,13 @@ namespace ADF_2007_ThibodeauAshley
         }
 
         //The CreateUser method will clear the console, and then ask the user to type in their information and add it to text file.
-        private void CreateUser(Menu menu)
+        private static void CreateUser(Menu menu, Dictionary<int, List<User>> data)
         {
             //Generate Random Unique ID
             Random random = new Random();
             int rnd = random.Next(11111, 99999);
 
-            UI.Header("Create User");
+            Format.Header("Create User");
 
             //User Input Information
             string newUserFirstName = Validation.UserStringEntry(" First Name: _");
@@ -141,8 +145,8 @@ namespace ADF_2007_ThibodeauAshley
             string newState = Validation.UserStringEntry(" State: _");
 
             User newUser = new User(newUserFirstName, newUserLastName, newPassword, newCity, newState);
-            _userData.Add(rnd, new List<User>());
-            _userData[rnd].Add(newUser);
+            data.Add(rnd, new List<User>());
+            data[rnd].Add(newUser);
 
             //Write new user to text file
             using (StreamWriter sw = File.AppendText(_path + _file))
@@ -151,14 +155,14 @@ namespace ADF_2007_ThibodeauAshley
             }
 
 
-            UI.Separator();
-            UI.AccentString("\r\n New UserID: ", $"{rnd}");
+            Format.Separator();
+            Format.AccentString("\r\n New UserID: ", $"{rnd}");
 
             Continue(menu);
 
         }
 
-        //Requests UserId and Password to login. If correct information assigns the active user
+        
         private void SignIn(Menu menu)
         {
             if (_userData.Count > 0)
@@ -171,8 +175,7 @@ namespace ADF_2007_ThibodeauAshley
                     _loggedIn = true;
 
                     menu = new Menu();
-                    menu.Init
-                    (new string[] { $"Welcome {_activeUser.FirstName}!", "About", "Show Profile", "Logout", "Exit" });
+                    menu.Init(profileMenu);
                     menu.Display();
 
                     Selection(menu);
@@ -182,7 +185,7 @@ namespace ADF_2007_ThibodeauAshley
             }
             else
             {
-                UI.Error("There are currently no active users. Please create a user account");
+                Format.Error("There are currently no active users. Please create a user account");
                 Selection(menu);
             }
 
@@ -190,37 +193,47 @@ namespace ADF_2007_ThibodeauAshley
 
         }
 
-        //Displays user profile
-        private void ShowProfile(User user, Menu menu)
+        private static void ShowProfile(User user, Menu menu)
         {
-            UI.Header($"Profile {user.FirstName}");
+            Format.Header($"Profile {user.FirstName}");
 
-            //Display Name
-            UI.ProfilePicture($"  {UI.Capitalization(user.FirstName)} {UI.Capitalization(user.LastName)} \r\n", " Location: \r\n", $" {UI.Capitalization(user.City)},{user.State} \r\n");
+            Format.ProfileLayout($"{Format.Capitalization(user.FirstName)} {Format.Capitalization(user.LastName)} \r\n", " Location: \r\n", $" {Format.Capitalization(user.City)},{user.State} \r\n");
 
             Continue(menu);
         }
 
+        private void Users()
+        {
+            Format.Header($"Profile {_activeUser.FirstName}");
+            foreach(KeyValuePair<int,List<User>> accounts in _userData)
+            {
+                foreach(User userItem in accounts.Value)
+                {
+                    Format.ProfileLayout($"{Format.Capitalization(userItem.FirstName)} {Format.Capitalization(userItem.LastName)} \r\n", " Location: \r\n", $" {Format.Capitalization(userItem.City)},{userItem.State} \r\n");
+                }
+                
+            }
+        }
 
-        //Clears the console and prints out a short message to the console
-        private void About(Menu menu)
+
+        private static void About(Menu menu)
         {
             Console.Clear();
-            UI.Header($" About");
+            Format.Header($" About");
 
             Console.WriteLine("\r\nThis is the about section\r\n");
 
             Continue(menu);
         }
 
-        //Clears the console and prints out a short message to the console
+        
         private static void Exit()
         {
-            UI.Header("Exiting....");
+            Format.Header("Exiting....");
             Environment.Exit(0);
         }
 
-        //Prints message to console, waits for users response to clear
+        
         private void Continue(Menu menu)
         {
             Refactor.Pause("Press any key to continue_ ");
