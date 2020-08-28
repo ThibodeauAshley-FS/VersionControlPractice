@@ -71,16 +71,7 @@ namespace ADF_2007_ThibodeauAshley
         //Asks the user to make a selection, user selection is then used in a switch statement
         public void Selection(Menu menu)
         {
-            int choice = 0;
-
-            if(_loggedIn == false)
-            {
-                choice = Validation.WithinRange(Validation.UserNumberEntry("Select a Menu Option: _"), mainMenu.Length-1);
-            }
-            else
-            {
-                choice = Validation.WithinRange(Validation.UserNumberEntry("Select a Menu Option: _"), profileMenu.Length-1);
-            }
+            int choice = Validation.NumberEntry("Select a Menu Option: _");
 
             if (_loggedIn == false && _activeUser == null)
             {
@@ -99,9 +90,10 @@ namespace ADF_2007_ThibodeauAshley
                         About(menu);
                         break;
                     default:
-                        Format.Error("Option not available");
+                        Format.Error("Sorry! The number you entered is not within a vaild range!");
                         Continue(menu);
                         break;
+
 
                 }
             }
@@ -122,18 +114,10 @@ namespace ADF_2007_ThibodeauAshley
                         Users(menu);
                         break;
                     case 4:
-                        _loggedIn = false;
-                        _activeUser = null;
-                        _name = " ";
-
-                        _menu = new Menu();
-                        _menu.Init(mainMenu, _name);
-                        _menu.Display();
-
-                        Selection(_menu);
+                        SignOut();
                         break;
                     default:
-                        Format.Error("Option not available");
+                        Format.Error("Sorry! The number you entered is not within a vaild range!");
                         Continue(menu);
                         break;
 
@@ -151,14 +135,16 @@ namespace ADF_2007_ThibodeauAshley
             Random random = new Random();
             int rnd = random.Next(11111, 99999);
 
+            rnd = Validation.KeyCheck(_userData, rnd);
+
             Format.Header("Create User");
 
             //User Input Information
-            string newUserFirstName = Validation.UserStringEntry(" First Name: _");
-            string newUserLastName = Validation.UserStringEntry(" Last Name: _");
-            string newPassword = Validation.UserStringEntry(" Password: _");
-            string newCity = Validation.UserStringEntry(" City: _");
-            string newState = Validation.UserStringEntry(" State: _");
+            string newUserFirstName = Validation.StringEntry(" First Name: _");
+            string newUserLastName = Validation.StringEntry(" Last Name: _");
+            string newPassword = Validation.StringEntry(" Password: _");
+            string newCity = Validation.StringEntry(" City: _");
+            string newState = Validation.StringEntry(" State: _");
 
             User newUser = new User(newUserFirstName, newUserLastName, newPassword, newCity, newState);
             _userData.Add(rnd, new List<User>());
@@ -208,6 +194,19 @@ namespace ADF_2007_ThibodeauAshley
 
             Continue(menu);
 
+        }
+
+        private void SignOut()
+        {
+                _loggedIn = false;
+                _activeUser = null;
+                _name = " ";
+
+                _menu = new Menu();
+                _menu.Init(mainMenu, _name);
+                _menu.Display();
+
+                Selection(_menu);
         }
 
         private void ShowProfile(User user, Menu menu)
