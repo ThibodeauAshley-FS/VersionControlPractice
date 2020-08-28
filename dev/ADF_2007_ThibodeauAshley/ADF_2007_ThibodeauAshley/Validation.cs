@@ -6,13 +6,15 @@
  
  */
 using System;
+using System.Collections.Generic;
+
 namespace ADF_2007_ThibodeauAshley
 {
-    public class Validation
+    public static class Validation
     {
 
         
-        public static string UserStringEntry(string inputMessage)
+        public static string StringEntry(string inputMessage)
         {
             string userResponse = Refactor.Input(inputMessage);
             
@@ -28,7 +30,7 @@ namespace ADF_2007_ThibodeauAshley
         }
 
         
-        public static int UserNumberEntry(string inputMessage)
+        public static int NumberEntry(string inputMessage)
         {
             string userResponse = Refactor.Input(inputMessage);
             int userResponseNumber;
@@ -44,23 +46,54 @@ namespace ADF_2007_ThibodeauAshley
             return userResponseNumber;
         }
 
-        
-        public static int WithinRange(int maxRangeAmount, string inputMessage)
+        public static int WithinRange(string inputMessage, int maxRange)
         {
-            string userResponse = Refactor.Input(inputMessage);
-            int userResponseNumber;
+            int userResponseNumber = NumberEntry(inputMessage);
 
-            while(!(int.TryParse(userResponse.Trim(),out userResponseNumber)) && (userResponseNumber < 0 && userResponseNumber > maxRangeAmount))
+            while(!(userResponseNumber < 0 && userResponseNumber > maxRange))
             {
                 //Error Message
-                Format.Error("Sorry! The entry isn't within range.");
-                Console.Write($"\r\n{inputMessage}");
-                userResponse = Console.ReadLine();
+                Format.Error("Sorry! The number you entered is not within a vaild range!");
+                userResponseNumber = NumberEntry(inputMessage);
             }
 
             return userResponseNumber;
         }
 
+        public static int KeyCheck(Dictionary<int, List<User>> dictionary, int rndNum)
+        {
+            bool NumberPresent = false;
+
+            foreach(KeyValuePair<int, List<User>> item in dictionary)
+            {
+                if(item.Key == rndNum)
+                {
+                    NumberPresent = true;
+                }
+                else
+                {
+                    NumberPresent = false;
+                }
+
+            }
+
+            rndNum = RndNumConditional(NumberPresent, dictionary, rndNum);
+
+            return rndNum;
+        }
+
+        private static int RndNumConditional(bool NumPresent, Dictionary<int, List<User>> dictionary, int rndNum)
+        {
+            if(NumPresent == true)
+            {
+                Random random = new Random();
+                rndNum = random.Next(11111, 99999);
+                KeyCheck(dictionary, rndNum);
+            }
+
+            return rndNum;
+
+        }
         
     }
 }
