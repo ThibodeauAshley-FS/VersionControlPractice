@@ -8,7 +8,7 @@
 using System;
 namespace ADF_2007_ThibodeauAshley
 {
-    public class Format
+    public static class Format
     {
             public static void Header(string text)
             {

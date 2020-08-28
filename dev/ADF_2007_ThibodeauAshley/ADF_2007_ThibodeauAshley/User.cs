@@ -37,8 +37,8 @@ namespace ADF_2007_ThibodeauAshley
             
             Format.Header( "Login");
 
-            int userKeyEntry = Validation.UserNumberEntry(" UserID: _");
-            string passwordEntry = Validation.UserStringEntry(" Password: _");
+            int userKeyEntry = Validation.NumberEntry(" UserID: _");
+            string passwordEntry = Validation.StringEntry(" Password: _");
 
             while(userEntryAttempt != true)
             {
@@ -48,8 +48,8 @@ namespace ADF_2007_ThibodeauAshley
                     Refactor.Pause("Press any key to continue _");
 
                     Format.Header( "Login");
-                    userKeyEntry = Validation.UserNumberEntry(" UserID: _");
-                    passwordEntry = Validation.UserStringEntry(" Password: _");
+                    userKeyEntry = Validation.NumberEntry(" UserID: _");
+                    passwordEntry = Validation.StringEntry(" Password: _");
                
                 }
 
@@ -71,8 +71,8 @@ namespace ADF_2007_ThibodeauAshley
                                 Refactor.Pause("Press any key to continue _");
 
                                 Format.Header( "Login");
-                                userKeyEntry = Validation.UserNumberEntry(" UserID: _");
-                                passwordEntry = Validation.UserStringEntry(" Password: _");
+                                userKeyEntry = Validation.NumberEntry(" UserID: _");
+                                passwordEntry = Validation.StringEntry(" Password: _");
                             }
                         }
                            

@@ -17,9 +17,9 @@ namespace ADF_2007_ThibodeauAshley
         private List<string> _menuItems = new List<string>();
 
         //Update the private member fields title and menuItems
-        public void Init(string[] items)
+        public void Init(string[] items, string name)
         {
-            _title = items[0].ToUpper();
+            _title = items[0].ToUpper() + " " + name.ToUpper();
 
             for (int i = 0; i < items.Length; i++)
             {
