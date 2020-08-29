@@ -220,7 +220,7 @@ namespace ADF_2007_ThibodeauAshley
 
         private void Users(Menu menu)
         {
-            Format.Header($"Profile {_activeUser.FirstName}");
+            Format.Header($"Users");
             foreach(KeyValuePair<int,List<User>> accounts in _userData)
             {
                 foreach(User userItem in accounts.Value)
