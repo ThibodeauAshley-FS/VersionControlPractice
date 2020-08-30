@@ -23,6 +23,7 @@ This week was quite busy as we touch on multiple topics including OOP, UML. We a
 
 **Week 3**:    
 This week I worked on continuing the project milestone while adding File I/O to my project. Along with working on File I/O integration to my project I was also able to learn new concepts such as the deconstruction process which turns out is somthing that I already do when I'm trying to figure out why something isnt working or when I forget what I'm doing. 
+
 **Week 4**:   
 
 
@@ -35,7 +36,7 @@ This week I worked on continuing the project milestone while adding File I/O to 
 - [X] Milestone 1: Complete
 - [X] Milestone 2: Complete 
 - [X] Milestone 3: Complete
-- [ ] Milestone 4: In Process
+- [ ] Milestone 4: Finalizing...
 
 
 
