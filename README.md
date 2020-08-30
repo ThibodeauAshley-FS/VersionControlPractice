@@ -24,7 +24,7 @@ This week was quite busy as we touch on multiple topics including OOP, UML. We a
 **Week 3**:    
 This week I worked on continuing the project milestone while adding File I/O to my project. Along with working on File I/O integration to my project I was also able to learn new concepts such as the deconstruction process which turns out is somthing that I already do when I'm trying to figure out why something isnt working or when I forget what I'm doing. 
 
-**Week 4**:   
+**Week 4**:   This week was busy as I continued developing the social media-like application we have been working on for the past 4 weeks. Though I found it necessary early on to have a User Interface class to satisfy the requirements asked of me for the assignment. This week we now had to have the formal name of the user interface class as Format as well as the added class of Refactor along with other additional methods needed for new functions. I renamed my UI class to meet the requirements as well as, luckily, I had been refactoring and making methods for the refactoring process throughout the week. To satisfy the requirements, I moved the methods to their proper place along with actively looking for new ways to clean my code which included making a few new fields to store the array information for easy adapting when adding new functions then referencing the fields as needed. I also added a new user method to display all the active users stored and added new users to have the amount greater than 10 as well as, adding a new method to check a condition in the validation class. I had implemented the validation method check the condition that if the random number generated was a duplicate key to that already in the dictionary, it would select another.  
 
 
 <br>
@@ -36,7 +36,7 @@ This week I worked on continuing the project milestone while adding File I/O to 
 - [X] Milestone 1: Complete
 - [X] Milestone 2: Complete 
 - [X] Milestone 3: Complete
-- [ ] Milestone 4: Finalizing...
+- [X] Milestone 4: Complete
 
 
 
